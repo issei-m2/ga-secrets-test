@@ -1,0 +1,13 @@
+name: Main
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  echo:
+    name: Echo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo 'Teeeeeeeest!!'
