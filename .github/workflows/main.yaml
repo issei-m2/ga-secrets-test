@@ -3,11 +3,21 @@ name: Main
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   echo:
-    name: Echo
+    name: Run script
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo 'Teeeeeeeest!!'
+
+      - run: node ./run.js
+        env:
+          NON_CRITICAL: ${{ secrets.NON_CRITICAL }}
+
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Setup tmate session
+#        uses: mxschmitt/action-tmate@v3
