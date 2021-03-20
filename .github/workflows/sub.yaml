@@ -1,0 +1,16 @@
+name: Main
+
+on:
+  pull_request_target:
+    branches: [main]
+
+jobs:
+  echo:
+    name: Run script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: node ./run.js
+        env:
+          NON_CRITICAL: ${{ secrets.NON_CRITICAL }}
