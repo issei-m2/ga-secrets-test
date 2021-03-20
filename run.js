@@ -1,5 +1,6 @@
 const secretVars = [
     'NON_CRITICAL',
+    'CRITICAL',
 ];
 
 secretVars.forEach(v => {
