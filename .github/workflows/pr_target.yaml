@@ -1,4 +1,4 @@
-name: PullRequestTarget
+name: Via PullRequest Target
 
 on:
   pull_request_target:
