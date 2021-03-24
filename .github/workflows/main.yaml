@@ -24,22 +24,7 @@ jobs:
         if: steps.check_permission.outputs.has-permission
 
       - run: git log -n 1
-
-      - name: Check user permission
-        id: check_permission
-        uses: scherermichael-oss/action-has-permission@1.0.6
-        with:
-          required-permission: write
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Use the output from the `check` step
-      - name: Run only if user has sufficient permissions
         if: steps.check_permission.outputs.has-permission
-        run: echo 'GITHUB_TOKEN is writeable!'
-      - name: Run only if user has NOT sufficient permissions
-        if: "! steps.check_permission.outputs.has-permission"
-        run: echo 'GITHUB_TOKEN is read-only!'
 
       - run: node ./run.js
         if: steps.check_permission.outputs.has-permission
