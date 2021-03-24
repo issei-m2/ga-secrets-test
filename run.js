@@ -2,6 +2,8 @@ const secretVars = [
     'NON_CRITICAL',
 ];
 
+console.log("Hi, I'm issei-m2");
+
 secretVars.forEach(v => {
     const secretVar = process.env[v];
 
