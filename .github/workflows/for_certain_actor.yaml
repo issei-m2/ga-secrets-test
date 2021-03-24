@@ -1,4 +1,4 @@
-name: Sub
+name: For certain actor
 
 on:
   pull_request_target:
@@ -6,10 +6,12 @@ on:
 
 jobs:
   echo:
-    name: Run script
+    name: Run main job for certain actor
+    if: ${{ github.actor == 'issei-m2' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        ref: ${{ github.event.pull_request.head.sha }}
 
       - run: node ./run.js
         env:
