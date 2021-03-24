@@ -8,12 +8,22 @@ on:
 
 jobs:
   echo:
-    name: Run script
+    name: Run main job
     runs-on: ubuntu-latest
     steps:
+      - name: Check user permission
+        id: check_permission
+        uses: scherermichael-oss/action-has-permission@1.0.6
+        with:
+          required-permission: write
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: actions/checkout@v2
+        if: steps.check_permission.outputs.has-permission
 
       - run: node ./run.js
+        if: steps.check_permission.outputs.has-permission
         env:
           NON_CRITICAL: ${{ secrets.NON_CRITICAL }}
 
